@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tutorial } from 'src/app/models/tutorial.model';
 import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
@@ -8,8 +9,8 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 })
 export class TutorialsListComponent implements OnInit {
 
-  tutorials: any;
-  currentTutorial = null;
+  tutorials?: Tutorial[];
+  currentTutorial: Tutorial = {};
   currentIndex = -1;
   title = '';
 
@@ -21,48 +22,49 @@ export class TutorialsListComponent implements OnInit {
 
   retrieveTutorials(): void {
     this.tutorialService.getAll()
-      .subscribe(
-        data => {
+      .subscribe({
+        next: (data) => {
           this.tutorials = data;
           console.log(data);
         },
-        error => {
-          console.log(error);
-        });
+        error: (e) => console.error(e)
+      });
   }
 
   refreshList(): void {
     this.retrieveTutorials();
-    this.currentTutorial = null;
+    this.currentTutorial = {};
     this.currentIndex = -1;
   }
 
-  setActiveTutorial(tutorial, index): void {
+  setActiveTutorial(tutorial: Tutorial, index: number): void {
     this.currentTutorial = tutorial;
     this.currentIndex = index;
   }
 
   removeAllTutorials(): void {
     this.tutorialService.deleteAll()
-      .subscribe(
-        response => {
-          console.log(response);
-          this.retrieveTutorials();
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.refreshList();
         },
-        error => {
-          console.log(error);
-        });
+        error: (e) => console.error(e)
+      });
   }
 
   searchTitle(): void {
+    this.currentTutorial = {};
+    this.currentIndex = -1;
+
     this.tutorialService.findByTitle(this.title)
-      .subscribe(
-        data => {
+      .subscribe({
+        next: (data) => {
           this.tutorials = data;
           console.log(data);
         },
-        error => {
-          console.log(error);
-        });
+        error: (e) => console.error(e)
+      });
   }
+
 }
