@@ -1,4 +1,3 @@
-
 <div class="list row">
   <div class="col-md-8">
     <div class="input-group mb-3">
@@ -37,28 +36,9 @@
     </button>
   </div>
   <div class="col-md-6">
-    <div *ngIf="currentTutorial">
-      <h4>Tutorial</h4>
-      <div>
-        <label><strong>Title:</strong></label> {{ currentTutorial.title }}
-      </div>
-      <div>
-        <label><strong>Description:</strong></label>
-        {{ currentTutorial.description }}
-      </div>
-      <div>
-        <label><strong>Status:</strong></label>
-        {{ currentTutorial.published ? "Published" : "Pending" }}
-      </div>
-
-      <a class="badge badge-warning" routerLink="/tutorials/{{ currentTutorial.id }}">
-        Edit
-      </a>
-    </div>
-
-    <div *ngIf="!currentTutorial">
-      <br />
-      <p>Please click on a Tutorial...</p>
-    </div>
+    <app-tutorial-details
+      [viewMode]="true"
+      [currentTutorial]="currentTutorial"
+    ></app-tutorial-details>
   </div>
 </div>
