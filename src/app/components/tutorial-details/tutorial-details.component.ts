@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./tutorial-details.component.css']
 })
 export class TutorialDetailsComponent implements OnInit {
-#  currentTutorial = null;
+  currentTutorial = null;
   message = '';
 
   constructor(
@@ -35,15 +35,15 @@ export class TutorialDetailsComponent implements OnInit {
 
   updatePublished(status): void {
     const data = {
-      title: this.currentTutorial.title,
-      description: this.currentTutorial.description,
+      title: this.currentTutorial!.title,
+      description: this.currentTutorial!.description,
       published: status
     };
 
-    this.tutorialService.update(this.currentTutorial.id, data)
+    this.tutorialService.update(this.currentTutorial!.id, data)
       .subscribe(
         response => {
-          this.currentTutorial.published = status;
+          this.currentTutorial!.published = status;
           console.log(response);
         },
         error => {
@@ -52,7 +52,7 @@ export class TutorialDetailsComponent implements OnInit {
   }
 
   updateTutorial(): void {
-    this.tutorialService.update(this.currentTutorial.id, this.currentTutorial)
+    this.tutorialService.update(this.currentTutorial!.id, this.currentTutorial)
       .subscribe(
         response => {
           console.log(response);
@@ -64,7 +64,7 @@ export class TutorialDetailsComponent implements OnInit {
   }
 
   deleteTutorial(): void {
-    this.tutorialService.delete(this.currentTutorial.id)
+    this.tutorialService.delete(this.currentTutorial!.id)
       .subscribe(
         response => {
           console.log(response);
