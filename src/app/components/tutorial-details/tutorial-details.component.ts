@@ -36,14 +36,14 @@ export class TutorialDetailsComponent implements OnInit {
   updatePublished(status): void {
     const data = {
       title: this.currentTutorial.title,
-      description: this.currentTutorial.description,
-      published: status
+       content: this.tutorial.content,
+      category: this.tutorial.category
     };
 
     this.tutorialService.update(this.currentTutorial.id, data)
       .subscribe(
         response => {
-          this.currentTutorial.published = status;
+        
           console.log(response);
         },
         error => {

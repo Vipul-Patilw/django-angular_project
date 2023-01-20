@@ -9,8 +9,8 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 export class AddTutorialComponent implements OnInit {
   tutorial = {
     title: '',
-    description: '',
-    published: false
+    content: '',
+    category: ''
   };
   submitted = false;
 
@@ -22,7 +22,8 @@ export class AddTutorialComponent implements OnInit {
   saveTutorial(): void {
     const data = {
       title: this.tutorial.title,
-      description: this.tutorial.description
+      content: this.tutorial.content,
+      category: this.tutorial.category
     };
 
     this.tutorialService.create(data)
@@ -41,7 +42,8 @@ export class AddTutorialComponent implements OnInit {
     this.tutorial = {
       title: '',
       description: '',
-      published: false
+        content: '',
+    category: ''
     };
   }
 
