@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-const baseUrl = 'http://localhost:8080/api/notes';
+const baseUrl = 'http://localhost:8080/api/tutorials';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +34,7 @@ export class TutorialService {
   }
 
   findByTitle(title): Observable<any> {
-    return this.http.get(`${baseUrl}?title=${title}`);
+    return this.http.get(`${baseUrl}? search=${title}`);
   }
   
 }
