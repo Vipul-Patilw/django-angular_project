@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./tutorial-details.component.css']
 })
 export class TutorialDetailsComponent implements OnInit {
-  currentTutorial = null;
+#  currentTutorial = null;
   message = '';
 
   constructor(
